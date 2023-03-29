@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment2">
+
+    <fragment
+        android:id="@+id/startFragment2"
+        android:name="com.example.caloriecalculator.StartFragment"
+        android:label="StartFragment" >
+        <action
+            android:id="@+id/action_startFragment2_to_informationFragment2"
+            app:destination="@id/informationFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/informationFragment2"
+        android:name="com.example.caloriecalculator.InformationFragment"
+        android:label="InformationFragment" >
+        <action
+            android:id="@+id/action_informationFragment2_to_resultFragment2"
+            app:destination="@id/resultFragment" />
+        <action
+            android:id="@+id/action_informationFragment2_to_startFragment2"
+            app:destination="@id/startFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.caloriecalculator.ResultFragment"
+        android:label="ResultFragment" >
+        <action
+            android:id="@+id/action_resultFragment_to_informationFragment2"
+            app:destination="@id/informationFragment2" />
+    </fragment>
+</navigation>
