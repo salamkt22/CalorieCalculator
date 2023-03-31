@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="startFragment"
+            type="com.example.caloriecalculator.StartFragment" />
+        <variable
+            name="viewModel"
+            type="com.example.caloriecalculator.model.SharedViewModel" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,6 +87,7 @@
             app:layout_constraintTop_toBottomOf="@id/gender_option"
             android:layout_marginTop="40dp"
             android:text="next"
+            android:onClick="@{() -> startFragment.goToNextScreen() }"
             >
         </Button>
 

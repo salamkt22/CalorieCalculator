@@ -4,7 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="resultFragment"
+            type="com.example.caloriecalculator.ResultFragment" />
+        <variable
+            name="viewModel"
+            type="com.example.caloriecalculator.model.SharedViewModel" />
     </data>
 
     <ScrollView

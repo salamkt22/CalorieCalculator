@@ -40,15 +40,91 @@ class SharedViewModel : ViewModel() {
     }
     fun setAge(yourAge : Int){
         _age.value = yourAge
+        calculateAge()
     }
     fun setHeight(heightNu : Double){
         _height.value = heightNu
+        calculateHeight()
     }
     fun setWeight(weightNu : Double){
         _weight.value = weightNu
+        calculateWeight()
     }
     fun setActiveDays(activeDays : String){
         _activeDays.value = activeDays
+        calculateBMR()
     }
+
+    private fun calculateHeight(){
+        val bmrHeightMale = (_height.value ?: 0.0 ) * 5.003
+        val bmrHeightFemale = (_height.value ?: 0.0 ) * 1.85
+
+        if (_gender.value == "Male"){
+            _height.value = bmrHeightMale
+        }else{
+            _height.value = bmrHeightFemale
+        }
+    }
+
+    private fun calculateWeight(){
+        val bmrWeightMale = (_weight.value ?: 0.0) * 13.75
+        val bmrWeightFemale = (_weight.value ?: 0.0) * 9.563
+
+        if (_gender.value == "Male"){
+            _weight.value = bmrWeightMale
+        }else{
+            _weight.value = bmrWeightFemale
+        }
+    }
+
+    private fun calculateAge(){
+        val bmrAgeMale = (_age.value ?: 0) * 7
+        val bmrAgeFemale = (_age.value ?: 0 ) * 5
+
+        if (_gender.value == "Male"){
+            _age.value = bmrAgeMale
+        }else{
+            _age.value = bmrAgeFemale
+        }
+    }
+
+    private fun calculateBMR(){
+        val heightPlusWeight = (_height.value ?: 0.0) + (_weight.value ?: 0.0)
+        val maleBMR = 66.74 + heightPlusWeight - (_age.value ?: 0)
+        val femaleBMR = 655.1 + heightPlusWeight - (_age.value ?: 0)
+
+        if (_gender.value == "Male"){
+            _maintenanceCalories.value = maleBMR
+        }else{
+            _maintenanceCalories.value = femaleBMR
+        }
+        when(_activeDays.value){
+            "Little or no exercise" -> {
+                _maintenanceCalories.value = (_maintenanceCalories.value ?: 0.0) * 1.2
+            }
+            "Exercise 1-3 times/week" -> {
+                _maintenanceCalories.value = (_maintenanceCalories.value ?: 0.0) * 1.375
+            }
+            "Exercise 4-5 times/week" -> {
+                _maintenanceCalories.value = (_maintenanceCalories.value ?: 0.0) * 1.55
+            }
+            "Intense exercise 6-7 times/week" -> {
+                _maintenanceCalories.value = (_maintenanceCalories.value ?: 0.0 ) * 1.725
+            }
+
+        }
+        calculateShreddedCalories()
+        calculateBulkCalories()
+    }
+
+    private fun calculateShreddedCalories(){
+        _shreddedCalories.value = (_maintenanceCalories.value ?: 0.0) - 500
+    }
+
+    private fun calculateBulkCalories(){
+        _bulkCalories.value = (_maintenanceCalories.value ?: 0.0) + 500
+    }
+
+
 
 }

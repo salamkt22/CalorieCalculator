@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="informationFragment"
+            type="com.example.caloriecalculator.InformationFragment" />
+        <variable
+            name="viewModel"
+            type="com.example.caloriecalculator.model.SharedViewModel" />
 
     </data>
 
@@ -100,6 +106,7 @@
             app:layout_constraintTop_toBottomOf="@id/ActiveDays"
             android:layout_marginTop="40dp"
             android:text="Result"
+            android:onClick="@{() -> informationFragment.goToNextScreen() }"
             >
         </Button>
 
